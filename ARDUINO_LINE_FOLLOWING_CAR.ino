@@ -1,7 +1,3 @@
-/*
- * Forbiddenbit.com
- */
- 
  #define Motor11 7
  #define Motor12 6
  #define Motor21 9
@@ -9,8 +5,8 @@
  #define PWMmotor1 5
  #define PWMmotor2 10
 
- int valuePWM1=120; // speed motor 1 
- int valuePWM2=150; // speed motor 2
+ int valuePWM1=200; // speed motor 1 
+ int valuePWM2=200; // speed motor 2
  
 void setup() {
   
@@ -22,7 +18,7 @@ void setup() {
   pinMode(PWMmotor2,OUTPUT);
 
 pinMode(A0, INPUT); // initialize Right sensor as an inut
-pinMode(A1, INPUT); // initialize Left sensor as as input
+pinMode(A1, INPUT); // initialize Left sensor as as input 
 
 }
 
@@ -31,7 +27,7 @@ void loop() {
   int LEFT_SENSOR = analogRead(A0);
   int RIGHT_SENSOR = analogRead(A1);
   
-if(RIGHT_SENSOR<36 && LEFT_SENSOR<36) //FORWARD
+if(RIGHT_SENSOR<100 && LEFT_SENSOR<100) //FORWARD
 {
             digitalWrite(Motor11, HIGH);
             digitalWrite(Motor12, LOW);
@@ -41,7 +37,7 @@ if(RIGHT_SENSOR<36 && LEFT_SENSOR<36) //FORWARD
             analogWrite(PWMmotor2, valuePWM1);
 }
 
- else if(RIGHT_SENSOR>36 && LEFT_SENSOR<36) //LEFT
+ else if(RIGHT_SENSOR>100 && LEFT_SENSOR<100) //LEFT
  {
             digitalWrite(Motor11, LOW);
             digitalWrite(Motor12, HIGH);
@@ -51,7 +47,7 @@ if(RIGHT_SENSOR<36 && LEFT_SENSOR<36) //FORWARD
             analogWrite(PWMmotor2, valuePWM2);
 }
 
-else if(RIGHT_SENSOR<36 && LEFT_SENSOR>35) //RIGHT
+else if(RIGHT_SENSOR<100 && LEFT_SENSOR>100) //RIGHT
  {
               digitalWrite(Motor11, HIGH);
               digitalWrite(Motor12, LOW);
@@ -61,12 +57,13 @@ else if(RIGHT_SENSOR<36 && LEFT_SENSOR>35) //RIGHT
               analogWrite(PWMmotor2, valuePWM2);
 }
 
-else if(RIGHT_SENSOR>35 && LEFT_SENSOR>35) //BACK
+else if(RIGHT_SENSOR>100 && LEFT_SENSOR>100) //BACK
 {
               digitalWrite(Motor11, LOW);
               digitalWrite(Motor12, LOW);
               digitalWrite(Motor21, LOW);
               digitalWrite(Motor22, LOW);
+              while(1){}
               delay(10000);
  }
 }
